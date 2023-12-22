@@ -104,7 +104,6 @@
     <script src="./assets/dist/js/demo-theme.min.js?1684106062"></script>
     <div class="page page-center">
         <div class="container container-tight py-4">
-            <x-alert/>
             <div class="text-center mb-4">
                 <a href="." class="navbar-brand navbar-brand-autodark"><img src="./assets/static/logo.svg"
                         height="36" alt=""></a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Management;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -31,7 +32,25 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'role' => 'required|in:admin,user',
+        ]);
+
+        $user = new User();
+        $user->name = ucwords($request->name);
+        $user->email = $request->email;
+        $user->password = Hash::make(
+            $request->password
+        );
+        $user->role = $request->role;
+        $user->save();
+
+        return redirect()
+            ->route('users.index')
+            ->with('success', 'User berhasil dibuat!');
     }
 
     /**
@@ -55,7 +74,25 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:8',
+            'role' => 'required|in:admin,user',
+        ]);
+
+        User::where('id', $id)
+            ->update([
+                'name' => ucwords($request->name),
+                'email' => $request->email,
+                'password' => Hash::make(
+                    $request->password
+                ),
+                'role' => $request->role,
+            ]);
+
+        return redirect()->route('users.index')
+            ->with('success', 'User berhasil diupdate!');
     }
 
     /**
@@ -63,6 +100,12 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::find($id)->delete();
+
+        // Return response
+        return response()->json([
+            'success' => true,
+            'message' => 'User berhasil dihapus!',
+        ]);
     }
 }
