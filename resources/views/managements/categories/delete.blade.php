@@ -27,7 +27,7 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: `/users/${post_id}`,
+                        url: `/categories/${post_id}`,
                         type: "DELETE",
                         cache: false,
                         data: {
@@ -46,7 +46,7 @@
 
                             // redirect to users page
                             setTimeout(function() {
-                                window.location.href = "/users";
+                                window.location.href = "/categories";
                             }, 1500);
                         }
                     });

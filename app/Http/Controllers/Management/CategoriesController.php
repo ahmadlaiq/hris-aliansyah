@@ -31,18 +31,18 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-            
-            $request->validate([
-                'name' => 'required',
-            ]);
-    
-            $categories = new Categories();
-            $categories->name = ucwords($request->name);
-            $categories->save();
-    
-            return redirect()
-                ->route('categories.index')
-                ->with('success', 'Ketegori berhasil dibuat!');
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $categories = new Categories();
+        $categories->name = ucwords($request->name);
+        $categories->save();
+
+        return redirect()
+            ->route('categories.index')
+            ->with('success', 'Ketegori berhasil dibuat!');
     }
 
     /**
@@ -66,7 +66,18 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $request->validate([
+            'name' => 'required',
+        ]);
+
+        $categories = Categories::findOrFail($id);
+        $categories->name = ucwords($request->name);
+        $categories->save();
+
+        return redirect()
+            ->route('categories.index')
+            ->with('success', 'Ketegori berhasil diubah!');
     }
 
     /**
@@ -74,6 +85,12 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Categories::findOrFail($id)->delete();
+
+        // Return response
+        return response()->json([
+            'success' => true,
+            'message' => 'Kategori berhasil dihapus!',
+        ]);
     }
 }
