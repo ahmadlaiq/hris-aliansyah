@@ -13,7 +13,7 @@ class LetterController extends Controller
     public function index()
     {
         $letters = Letter::query()->get();
-        return view('managements.categories.index', compact('letters'));
+        return view('letters.index', compact('letters'));
     }
 
     /**

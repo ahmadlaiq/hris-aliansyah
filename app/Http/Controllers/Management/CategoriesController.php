@@ -13,9 +13,9 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $categorys = Categories::query()
+        $categories = Categories::query()
             ->orderBy('name')->get();
-        return view('managements.categories.index', compact('categorys'));
+        return view('managements.categories.index', compact('categories'));
     }
 
     /**
@@ -31,7 +31,18 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+            
+            $request->validate([
+                'name' => 'required',
+            ]);
+    
+            $categories = new Categories();
+            $categories->name = ucwords($request->name);
+            $categories->save();
+    
+            return redirect()
+                ->route('categories.index')
+                ->with('success', 'Ketegori berhasil dibuat!');
     }
 
     /**

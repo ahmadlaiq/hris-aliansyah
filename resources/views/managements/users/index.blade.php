@@ -56,6 +56,7 @@
                         <table class="table table-vcenter table-mobile-md card-table">
                             <thead>
                                 <tr class="text-bold">
+                                    <th>#</th>
                                     <th>Nama</th>
                                     <th>Password</th>
                                     <th>Jabatan</th>
@@ -66,6 +67,7 @@
                             <tbody>
                                 @foreach ($users as $user)
                                     <tr>
+                                        <td>{{ $loop->iteration }}</td>
                                         <td data-label="Name">
                                             <div class="d-flex py-1 align-items-center">
                                                 <span class="avatar me-2"
