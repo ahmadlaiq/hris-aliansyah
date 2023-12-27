@@ -105,8 +105,8 @@
     <div class="page page-center">
         <div class="container container-tight py-4">
             <div class="text-center mb-4">
-                <a href="." class="navbar-brand navbar-brand-autodark"><img src="./assets/static/logo.svg"
-                        height="36" alt=""></a>
+                <a href="." class="navbar-brand navbar-brand-autodark"><img src="./assets/static/aliansyah-logo.png"
+                        height="40" alt=""></a>
             </div>
             <div class="card card-md">
                 <div class="card-body">
