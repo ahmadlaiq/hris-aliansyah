@@ -10,4 +10,10 @@ class Categories extends Model
     use HasFactory;
 
     protected $guarded=['id'];
+
+    //has many
+    public function letters()
+    {
+        return $this->hasMany(Letter::class);
+    }
 }
