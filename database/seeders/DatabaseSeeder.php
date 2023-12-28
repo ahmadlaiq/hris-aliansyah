@@ -13,13 +13,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('123456'),
             'role' => 'admin',
+        ]);
+
+        \App\Models\User::factory(25)->create();
+
+        $this->call([
+            CategoriSeeder::class,
         ]);
     }
 }

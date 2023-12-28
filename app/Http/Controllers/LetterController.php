@@ -15,7 +15,7 @@ class LetterController extends Controller
      */
     public function index()
     {
-        $letters = Letter::latest()->get();
+        $letters = Letter::latest()->paginate(25);
         $categories = Categories::get(['id', 'name']);
         return view('letters.index', compact('letters', 'categories'));
     }

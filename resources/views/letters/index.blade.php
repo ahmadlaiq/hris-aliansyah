@@ -105,6 +105,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="d-flex mt-3 justify-content-end">
+                        {{ $letters->links() }}
+                    </div>
                 </div>
             </div>
         </div>

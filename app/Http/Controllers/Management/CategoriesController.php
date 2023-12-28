@@ -14,7 +14,7 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = Categories::query()
-            ->orderBy('name')->get();
+            ->orderBy('name')->paginate(25);
         return view('managements.categories.index', compact('categories'));
     }
 

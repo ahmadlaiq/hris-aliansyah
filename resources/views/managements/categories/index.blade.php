@@ -95,6 +95,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="d-flex mt-3 justify-content-end">
+                        {{ $categories->links() }}
+                    </div>
                 </div>
             </div>
         </div>
