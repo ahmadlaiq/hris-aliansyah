@@ -26,9 +26,32 @@
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Deskripsi <span class="form-label-description">Max 100</span></label>
-                        <textarea class="form-control" name="description" rows="6" placeholder="Deskripsi.."></textarea>
-                    </div>
+                        <label for="description" class="form-label">Deskripsi <span class="form-label-description">Max 100</span></label>
+                        <textarea id="summernote" name="description"></textarea>
+                        {{-- <textarea id="summernote" class="form-control" name="description" rows="6" placeholder="Deskripsi.."></textarea> --}}
+                        <script>
+                            $('#summernote').summernote({
+                              placeholder: 'Deskripsi...',
+                              tabsize: 2,
+                              height: 120,
+                              toolbar: [
+                                ['style', ['style']],
+                                ['font', ['bold', 'underline', 'clear']],
+                                ['color', ['color']],
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                ['table', ['table']],
+                                ['insert', ['link', 'picture', 'video']],
+                                ['view', ['fullscreen', 'codeview', 'help']]
+                              ]
+                            });
+                          </script>
+
+                            @error('desc')
+                            <div class="text-danger">
+                                {{ $message }}
+                            </div>
+                            @enderror
+                        </div>
                 </div>
                 <div class="modal-footer">
                     <a href="#" class="btn btn-outline-danger" data-bs-dismiss="modal">
@@ -50,3 +73,7 @@
         </div>
     </div>
 </div>
+
+@push('js')
+
+@endpush
