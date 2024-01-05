@@ -15,43 +15,35 @@ class LetterController extends Controller
      */
     public function index()
     {
-        $letters = Letter::latest()->paginate(25);
-        $categories = Categories::get(['id', 'name']);
-        return view('letters.index', compact('letters', 'categories'));
+        $letters = Letter::orderBy('id', 'desc')->paginate(25);
+        // $categories = Categories::get(['id', 'name']);
+        return view('letters.index', compact('letters'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'categori_id' => 'required',
-            'description' => 'nullable',
-            'image' => 'required|image|mimes:jpg,png,jpeg|max:2048'
-        ]);
+{
+    $request->validate([
+        'title' => 'required',
+        'description' => 'nullable',
+        'image' => 'required|file|mimes:pdf,doc,jpg,png,jpeg|max:5000' // Ubah validasi menjadi file dengan ekstensi yang diizinkan
+    ]);
+    $content = $request->input('description') ?: '';
+    $letters = new Letter();
+    $letters->title = ucwords($request->title);
+    $letters->user_id = Auth::user()->id;
+    // $letters->categori_id = $request->categori_id;
+    $letters->description = $content;
 
-        $letters = new Letter();
-        $letters->title = ucwords($request->title);
-        $letters->user_id = Auth::user()->id;
-        $letters->categori_id = $request->categori_id;
-        $letters->description = ucwords($request->description);
-        $letters->image = $request->file('image')->store('letter-images');
-        $letters->save();
+    // Simpan file ke direktori yang sesuai
+    $filePath = $request->file('image')->store('letter-images');
 
-        return redirect()
-            ->route('letters.index')
-            ->with('success', 'Surat berhasil dibuat!');
-    }
+    $letters->image = $filePath;
+    $letters->save();
+
+    return redirect()
+        ->route('letters.index')
+        ->with('success', 'Surat berhasil dibuat!');
+}
 
     /**
      * Display the specified resource.

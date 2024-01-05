@@ -20,15 +20,6 @@
                             placeholder="Judul" required value="{{ $letter->title }}">
                     </div>
                     <div class="mb-3">
-                        <div class="form-label">Pilih Ketegori</div>
-                        <select class="form-select" name="categori_id" required>
-                            <option selected value="{{ $letter->categori_id }}">{{ $letter->categori->name }}</option>
-                            @foreach ($categories as $categori)
-                                <option value="{{ $categori->id }}">{{ $categori->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
                         <label class="form-label">Deskripsi <span class="form-label-description">Max 100</span></label>
                         <textarea class="form-control" name="description" rows="6" placeholder="Deskripsi..">{{ $letter->description }}</textarea>
                     </div>

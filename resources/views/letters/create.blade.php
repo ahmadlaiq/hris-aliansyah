@@ -18,23 +18,15 @@
                             placeholder="Judul" required>
                     </div>
                     <div class="mb-3">
-                        <div class="form-label">Pilih Ketegori</div>
-                        <select class="form-select" name="categori_id" required>
-                            @foreach ($categories as $categori)
-                            <option value="{{ $categori->id }}">{{ $categori->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="mb-3">
                         <label for="description" class="form-label">Deskripsi <span class="form-label-description">Max 100</span></label>
                         <textarea id="summernote" name="description"></textarea>
                         {{-- <textarea id="summernote" class="form-control" name="description" rows="6" placeholder="Deskripsi.."></textarea> --}}
                         <script>
                             $('#summernote').summernote({
-                              placeholder: 'Deskripsi...',
-                              tabsize: 2,
-                              height: 120,
-                              toolbar: [
+                            placeholder: 'Deskripsi...',
+                            tabsize: 2,
+                            height: 120,
+                            toolbar: [
                                 ['style', ['style']],
                                 ['font', ['bold', 'underline', 'clear']],
                                 ['color', ['color']],
@@ -42,9 +34,14 @@
                                 ['table', ['table']],
                                 ['insert', ['link', 'picture', 'video']],
                                 ['view', ['fullscreen', 'codeview', 'help']]
-                              ]
-                            });
-                          </script>
+                            ],
+                            callbacks: {
+                                onInit: function() {
+                                    $('#summernote').summernote('code', $('#summernote').summernote('code').replace(/<p>/g, '').replace(/<\/p>/g, ''));
+                                }
+                            }
+                        });
+                        </script>
 
                             @error('desc')
                             <div class="text-danger">
@@ -54,18 +51,11 @@
                         </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#" class="btn btn-outline-danger" data-bs-dismiss="modal">
-                        Cancel
-                    </a>
-                    <button type="submit" class="btn btn-primary ms-auto">
+                    <button type="submit" class="btn btn-outline-danger">
                         <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                            viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                            <path d="M12 5l0 14" />
-                            <path d="M5 12l14 0" />
-                        </svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="bi bi-save-fill" width="16" height="16" fill="currentColor" class="bi bi-save-fill" viewBox="0 0 16 16">
+                            <path d="M8.5 1.5A1.5 1.5 0 0 1 10 0h4a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h6c-.314.418-.5.937-.5 1.5v7.793L4.854 6.646a.5.5 0 1 0-.708.708l3.5 3.5a.5.5 0 0 0 .708 0l3.5-3.5a.5.5 0 0 0-.708-.708L8.5 9.293z"/>
+                          </svg>
                         Simpan
                     </button>
                 </div>

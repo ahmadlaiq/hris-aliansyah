@@ -12,7 +12,7 @@
                         HRIS MANAJEMEN
                     </div>
                     <h2 class="page-title">
-                        DATA SURAT
+                        DATA SURAT DEMOSI
                     </h2>
                 </div>
                 <!-- Page title actions -->
@@ -56,9 +56,9 @@
                         <table class="table table-vcenter table-mobile-md card-table">
                             <thead>
                                 <tr class="text-bold">
-                                    <th>#</th>
-                                    <th>Judul</th>
-                                    <th>Kategori</th>
+                                    <th>No</th>
+                                    <th>Judul Surat</th>
+                                    <th>Deskripsi</th>
                                     <th class="w-1">Action</th>
                                 </tr>
                             </thead>
@@ -66,6 +66,19 @@
                                 @foreach ($letters as $letter)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        {{-- <td data-label="Name">
+                                            <div class="d-flex py-1 align-items-center">
+                                                <div class="flex-fill">
+                                                    @if(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['pdf', 'doc']))
+                                                        <a href="{{ Storage::url($letter->image) }}" target="_blank">Download Dokumen</a>
+                                                    @elseif(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
+                                                        <img src="{{ asset('storage/'.$letter->image)}}" alt="Gambar" height="100">
+                                                    @else
+                                                        Tidak ada file yang valid
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </td>                                         --}}
                                         <td data-label="Name">
                                             <div class="d-flex py-1 align-items-center">
                                                 <div class="flex-fill">
@@ -76,15 +89,15 @@
                                         <td data-label="Kategori">
                                             <div class="d-flex py-1 align-items-center">
                                                 <div class="flex-fill">
-                                                    <div class="font-weight-medium">{{ $letter->categori->name }}</div>
+                                                    <div class="font-weight-medium">{{ $letter->description }}</div>
                                                 </div>
                                             </div>
                                         <td>
                                             <div class="btn-list flex-nowrap">
                                                 <div class="dropdown">
-                                                    <button class="btn btn-outline-primary dropdown-toggle align-text-top"
+                                                    <button class="btn btn-outline-success dropdown-toggle align-text-top"
                                                         data-bs-toggle="dropdown">
-                                                        Actions
+                                                        Aksi
                                                     </button>
                                                     <div class="dropdown-menu dropdown-menu-end">
                                                         <button class="dropdown-item" data-bs-toggle="modal"
