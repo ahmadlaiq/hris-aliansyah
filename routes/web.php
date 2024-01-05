@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\LetterController;
+use App\Http\Controllers\LetterPemberitahuanController;
 use App\Http\Controllers\Management\CategoriesController;
 use App\Http\Controllers\Management\UserController;
 use Illuminate\Support\Facades\Route;
@@ -33,4 +34,5 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::resource('letters', LetterController::class);
+    Route::resource('letters-pemberitahuan', LetterPemberitahuanController::class);
 });
