@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\LetterController;
+use App\Http\Controllers\LetterEdaranController;
+use App\Http\Controllers\LetterMutasiController;
+use App\Http\Controllers\LetterPeringatanController;
 use App\Http\Controllers\LetterPemberitahuanController;
 use App\Http\Controllers\Management\CategoriesController;
 use App\Http\Controllers\Management\UserController;
@@ -35,4 +38,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::resource('letters', LetterController::class);
     Route::resource('letters-pemberitahuan', LetterPemberitahuanController::class);
+    Route::resource('letters-edaran', LetterEdaranController::class);
+    Route::resource('letters-mutasi', LetterMutasiController::class);
+    Route::resource('letters-peringatan', LetterPeringatanController::class);
 });
