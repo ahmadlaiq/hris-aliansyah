@@ -3,21 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categories;
-use App\Models\LetterMutasi;
+use App\Models\LetterKeputusan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
-class LetterMutasiController extends Controller
+class LetterKeputusanController extends Controller
 {
-     /**
+      /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $letters = LetterMutasi::orderBy('id', 'desc')->paginate(25);
+        $letters = LetterKeputusan::orderBy('id', 'desc')->paginate(25);
         // $categories = Categories::get(['id', 'name']);
-        return view('letters-mutasi.index', compact('letters'));
+        return view('letters-keputusan.index', compact('letters'));
     }
 
     public function store(Request $request)
@@ -28,20 +28,20 @@ class LetterMutasiController extends Controller
         'image' => 'required|file|mimes:pdf,doc,jpg,png,jpeg|max:5000' // Ubah validasi menjadi file dengan ekstensi yang diizinkan
     ]);
     $content = $request->input('description') ?: '';
-    $letters = new LetterMutasi();
+    $letters = new LetterKeputusan();
     $letters->title = ucwords($request->title);
     $letters->user_id = Auth::user()->id;
     // $letters->categori_id = $request->categori_id;
     $letters->description = $content;
 
     // Simpan file ke direktori yang sesuai
-    $filePath = $request->file('image')->store('letter-mutasi');
+    $filePath = $request->file('image')->store('letter-keputusan');
 
     $letters->image = $filePath;
     $letters->save();
 
     return redirect()
-        ->route('letters-mutasi.index')
+        ->route('letters-keputusan.index')
         ->with('success', 'Surat demosi berhasil dibuat!');
 }
 
@@ -73,7 +73,7 @@ class LetterMutasiController extends Controller
             'image' => 'required|image|mimes:jpg,png,jpeg|max:2048'
         ]);
 
-        $letters = LetterMutasi::findOrFail($id);
+        $letters = LetterKeputusan::findOrFail($id);
         $letters->title = ucwords($request->title);
         $letters->user_id = Auth::user()->id;
         $letters->categori_id = $request->categori_id;
@@ -83,14 +83,14 @@ class LetterMutasiController extends Controller
             if ($letters->image && file_exists(storage_path('app/public/' . $letters->image))) {
                 Storage::delete('public/' . $letters->image);
             }
-            $file = $request->file('image')->store('letter-mutasi');
+            $file = $request->file('image')->store('letter-keputusan');
             $letters->image = $file;
         }
 
         $letters->save();
 
         return redirect()
-            ->route('letters-mutasi.index')
+            ->route('letters-keputusan.index')
             ->with('success', 'Surat demosi berhasil diupdate!');
     }
 
@@ -99,7 +99,7 @@ class LetterMutasiController extends Controller
      */
     public function destroy(string $id)
     {
-        $letters = LetterMutasi::findOrFail($id);
+        $letters = LetterKeputusan::findOrFail($id);
         $letters->delete();
 
         if ($letters->image && file_exists(storage_path('app/public/' . $letters->image))) {

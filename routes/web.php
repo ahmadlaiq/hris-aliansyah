@@ -3,6 +3,7 @@
 use App\Http\Controllers\LetterController;
 use App\Http\Controllers\LetterEdaranController;
 use App\Http\Controllers\LetterMutasiController;
+use App\Http\Controllers\LetterKeputusanController;
 use App\Http\Controllers\LetterPeringatanController;
 use App\Http\Controllers\LetterPemberitahuanController;
 use App\Http\Controllers\Management\CategoriesController;
@@ -41,4 +42,5 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('letters-edaran', LetterEdaranController::class);
     Route::resource('letters-mutasi', LetterMutasiController::class);
     Route::resource('letters-peringatan', LetterPeringatanController::class);
+    Route::resource('letters-keputusan', LetterKeputusanController::class);
 });
