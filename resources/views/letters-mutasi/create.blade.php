@@ -41,6 +41,22 @@
                                 }
                             }
                         });
+                        $('#form').submit(function() {
+                        // Cek apakah deskripsi kosong saat form disubmit
+                        if ($('#summernote').summernote('isEmpty')) {
+                            // Ambil nilai judul dan tambahkan "Surat" jika deskripsi kosong
+                            var title = $('input[name="title"]').val();
+                            var defaultDescription = 'Surat ' + title;
+
+                            // Set nilai default ke deskripsi
+                            $('#summernote').val(defaultDescription);
+                        }
+                        });
+                    
+                        // Memeriksa deskripsi saat halaman dimuat
+                        if ($('#summernote').summernote('isEmpty')) {
+                            $('#summernote').summernote('code', '');
+                        }
                         </script>
 
                             @error('desc')

@@ -28,6 +28,11 @@ class LetterController extends Controller
         'image' => 'required|file|mimes:pdf,doc,jpg,png,jpeg|max:5000' // Ubah validasi menjadi file dengan ekstensi yang diizinkan
     ]);
     $content = $request->input('description') ?: '';
+
+    if (empty($content)) {
+        $content = 'Surat ' . ucwords($request->title);
+    }
+    
     $letters = new Letter();
     $letters->title = ucwords($request->title);
     $letters->user_id = Auth::user()->id;
@@ -48,9 +53,16 @@ class LetterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function search(Request $request)
     {
-        //
+        $searchTerm = $request->search;
+        $letters = Letter::where(function ($query) use ($searchTerm) {
+            $query->where('title', 'like', '%' . $searchTerm . '%');
+        })
+            ->paginate(25);
+            $letters->appends(['search' => $searchTerm]);
+    
+        return view('letters.index', compact('letters'));
     }
 
     /**

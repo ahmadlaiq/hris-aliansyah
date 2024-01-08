@@ -28,6 +28,11 @@ class LetterMutasiController extends Controller
         'image' => 'required|file|mimes:pdf,doc,jpg,png,jpeg|max:5000' // Ubah validasi menjadi file dengan ekstensi yang diizinkan
     ]);
     $content = $request->input('description') ?: '';
+
+    if (empty($content)) {
+        $content = 'Surat ' . ucwords($request->title);
+    }
+    
     $letters = new LetterMutasi();
     $letters->title = ucwords($request->title);
     $letters->user_id = Auth::user()->id;
