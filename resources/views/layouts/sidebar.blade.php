@@ -190,13 +190,9 @@
                         style="background-image: url(./assets/static/AliansyahLogoo.png)"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="{{ route('logout') }}" class="dropdown-item">
-                    <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="icon icon-tabler icon-tabler-transition-right" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="#ffff" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
+                    <a href="{{ route('logout') }}" style="cursor: pointer" onclick="event.preventDefault(); document.getElementById('logout-form').submit();" class="d-flex align-items-center">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-transition-right" width="16" height="16" viewBox="0 0 24 24" stroke-width="2" stroke="#ffff" fill="none" stroke-linecap="round" stroke-linejoin="round">
                                 <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                                 <path d="M18 3a3 3 0 0 1 3 3v12a3 3 0 0 1 -3 3" />
                                 <path d="M3 18v-12a3 3 0 1 1 6 0v12a3 3 0 0 1 -6 0z" />
@@ -205,10 +201,14 @@
                             </svg>
                         </span>
                         <span class="nav-link-title">
-                            Logout
+                            Keluar
                         </span>
                     </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
+                
             </div>
         </div>
         <div class="collapse navbar-collapse" id="sidebar-menu">
