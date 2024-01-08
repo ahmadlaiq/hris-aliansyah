@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
         return view('home');
     });
 
-    Route::get('/Surat-Demosi/search', [LetterController::class, 'search'])->name('letters.search');
+    // Route::get('letters/search', [LetterController::class, 'search'])->name('letters.search');
     Route::resource('letters', LetterController::class);
     Route::resource('letters-pemberitahuan', LetterPemberitahuanController::class);
     Route::resource('letters-edaran', LetterEdaranController::class);

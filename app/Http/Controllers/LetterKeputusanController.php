@@ -15,7 +15,7 @@ class LetterKeputusanController extends Controller
      */
     public function index()
     {
-        $letters = LetterKeputusan::orderBy('id', 'desc')->paginate(25);
+        $letters = LetterKeputusan::orderBy('id', 'desc')->paginate(10);
         // $categories = Categories::get(['id', 'name']);
         return view('letters-keputusan.index', compact('letters'));
     }

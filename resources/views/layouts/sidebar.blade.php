@@ -187,19 +187,10 @@
                 <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown"
                     aria-label="Open user menu">
                     <span class="avatar avatar-sm"
-                        style="background-image: url(./assets/static/avatars/000m.jpg)"></span>
-                    <div class="d-none d-xl-block ps-2">
-                        <div>Paweł Kuna</div>
-                        <div class="mt-1 small text-muted">UI Designer</div>
-                    </div>
+                        style="background-image: url(./assets/static/AliansyahLogoo.png)"></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                    <a href="#" class="dropdown-item">Status</a>
-                    <a href="./profile.html" class="dropdown-item">Profile</a>
-                    <a href="#" class="dropdown-item">Feedback</a>
-                    <div class="dropdown-divider"></div>
-                    <a href="./settings.html" class="dropdown-item">Settings</a>
-                    <a href="./sign-in.html" class="dropdown-item">Logout</a>
+                    <a href="{{ route('logout') }}" class="dropdown-item">Logout</a>
                 </div>
             </div>
         </div>
@@ -338,26 +329,6 @@
                         </div>
                     </div>
                 </li>
-                {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{ route('letters.index') }}">
-                        <span
-                            class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/checkbox -->
-                            <svg xmlns="http://www.w3.org/2000/svg"
-                                class="icon icon-tabler icon-tabler-file-description" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M14 3v4a1 1 0 0 0 1 1h4" />
-                                <path d="M17 21h-10a2 2 0 0 1 -2 -2v-14a2 2 0 0 1 2 -2h7l5 5v11a2 2 0 0 1 -2 2z" />
-                                <path d="M9 17h6" />
-                                <path d="M9 13h6" />
-                            </svg>
-                        </span>
-                        <span class="nav-link-title">
-                            Surat
-                        </span>
-                    </a>
-                </li> --}}
                 <li class="nav-item">
                     <a class="nav-link bg-danger" href="{{ route('logout') }}" style="cursor: pointer"
                         onclick="event.preventDefault();

@@ -1,4 +1,4 @@
-<style>
+{{-- <style>
     .search-bar {
     float: right;
     /*background-color:  #3EB489;*/
@@ -33,7 +33,7 @@
         margin-bottom: 10px;
     }
 }
-</style>
+</style> --}}
 @extends('layouts.app')
 
 @section('content')
@@ -67,25 +67,14 @@
                             </svg>
                             Tambah Surat
                         </a>
-                        <a href="#" class="btn btn-primary d-sm-none btn-icon" data-bs-toggle="modal"
-                            data-bs-target="#modal-report" aria-label="Create new report">
-                            <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24"
-                                viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                                stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-                                <path d="M12 5l0 14" />
-                                <path d="M5 12l14 0" />
-                            </svg>
-                        </a>
                     </div>
                 </div>
-                <div class="search-bar">
+                {{-- <div class="search-bar">
                     <form action="{{ route('letters.search') }}" method="GET">
                         <input type="text" name="search" placeholder="Cari Surat" class="search-input">
                         <button type="submit" class="search-button">CARI</button>
                     </form>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
@@ -108,19 +97,6 @@
                                 @foreach ($letters as $letter)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        {{-- <td data-label="Name">
-                                            <div class="d-flex py-1 align-items-center">
-                                                <div class="flex-fill">
-                                                    @if(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['pdf', 'doc']))
-                                                        <a href="{{ Storage::url($letter->image) }}" target="_blank">Download Dokumen</a>
-                                                    @elseif(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                        <img src="{{ asset('storage/'.$letter->image)}}" alt="Gambar" height="100">
-                                                    @else
-                                                        Tidak ada file yang valid
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </td>                                         --}}
                                         <td data-label="Name">
                                             <div class="d-flex py-1 align-items-center">
                                                 <div class="flex-fill">

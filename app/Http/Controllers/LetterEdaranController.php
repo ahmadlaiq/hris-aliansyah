@@ -15,7 +15,7 @@ class LetterEdaranController extends Controller
      */
     public function index()
     {
-        $letters = LetterEdaran::orderBy('id', 'desc')->paginate(25);
+        $letters = LetterEdaran::orderBy('id', 'desc')->paginate(10);
         // $categories = Categories::get(['id', 'name']);
         return view('letters-edaran.index', compact('letters'));
     }

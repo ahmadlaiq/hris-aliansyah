@@ -14,7 +14,7 @@ class LetterPemberitahuanController extends Controller
      */
     public function index()
     {
-        $letters = LetterPemberitahuan::orderBy('id', 'desc')->paginate(25);
+        $letters = LetterPemberitahuan::orderBy('id', 'desc')->paginate(10);
         // $categories = Categories::get(['id', 'name']);
         return view('letters-pemberitahuan.index', compact('letters'));
     }

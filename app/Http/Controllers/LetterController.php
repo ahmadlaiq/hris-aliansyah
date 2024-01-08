@@ -15,7 +15,7 @@ class LetterController extends Controller
      */
     public function index()
     {
-        $letters = Letter::orderBy('id', 'desc')->paginate(25);
+        $letters = Letter::orderBy('id', 'desc')->paginate(10);
         // $categories = Categories::get(['id', 'name']);
         return view('letters.index', compact('letters'));
     }
@@ -53,17 +53,18 @@ class LetterController extends Controller
     /**
      * Display the specified resource.
      */
-    public function search(Request $request)
-    {
-        $searchTerm = $request->search;
-        $letters = Letter::where(function ($query) use ($searchTerm) {
-            $query->where('title', 'like', '%' . $searchTerm . '%');
-        })
-            ->paginate(25);
-            $letters->appends(['search' => $searchTerm]);
+//     public function search(Request $request)
+// {
+//     $searchTerm = $request->search;
     
-        return view('letters.index', compact('letters'));
-    }
+//     // Mencari surat berdasarkan judul dan deskripsi
+//     $letters = Letter::where('title', 'like', '%' . $searchTerm . '%')->paginate(10);
+//     $letters->appends(['search' => $searchTerm]);
+
+//     // Mengirim hasil pencarian ke view
+//     return view('letters.index', compact('letters'));
+// }
+
 
     /**
      * Show the form for editing the specified resource.

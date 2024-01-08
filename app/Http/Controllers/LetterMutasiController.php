@@ -15,7 +15,7 @@ class LetterMutasiController extends Controller
      */
     public function index()
     {
-        $letters = LetterMutasi::orderBy('id', 'desc')->paginate(25);
+        $letters = LetterMutasi::orderBy('id', 'desc')->paginate(10);
         // $categories = Categories::get(['id', 'name']);
         return view('letters-mutasi.index', compact('letters'));
     }
