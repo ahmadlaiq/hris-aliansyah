@@ -48,6 +48,19 @@
         </div>
     </div>
     <!-- Page body -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body border-bottom py-3">
+                <div class="d-flex">
+                    <div class="ms-auto text-muted">
+                        Search:
+                        <div class="ms-2 d-inline-block">
+                            <input type="text" class="form-control form-control-sm"
+                                aria-label="Search invoice">
+                        </div>
+                    </div>
+                </div>
+            </div>
     <div class="page-body">
         <div class="container-xl">
             <div class="col-12">
@@ -125,7 +138,34 @@
             </div>
         </div>
     </div>
+        </div>
+    </div>
     @include('letters-pemberitahuan.create')
 @endsection
 
 @include('letters-pemberitahuan.delete')
+@push('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.querySelector('input[aria-label="Search invoice"]');
+        const tableRows = document.querySelectorAll('.table tbody tr');
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.trim().toLowerCase();
+
+            tableRows.forEach(row => {
+                const title = row.querySelector('td:nth-child(2)').textContent.trim().toLowerCase();
+                const description = row.querySelector('td:nth-child(3)').textContent.trim().toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+    
+@endpush

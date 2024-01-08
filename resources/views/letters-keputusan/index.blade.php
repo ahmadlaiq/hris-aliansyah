@@ -48,6 +48,19 @@
         </div>
     </div>
     <!-- Page body -->
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body border-bottom py-3">
+                <div class="d-flex">
+                    <div class="ms-auto text-muted">
+                        Search:
+                        <div class="ms-2 d-inline-block">
+                            <input type="text" class="form-control form-control-sm"
+                                aria-label="Search invoice">
+                        </div>
+                    </div>
+                </div>
+            </div>
     <div class="page-body">
         <div class="container-xl">
             <div class="col-12">
@@ -66,19 +79,6 @@
                                 @foreach ($letters as $letter)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        {{-- <td data-label="Name">
-                                            <div class="d-flex py-1 align-items-center">
-                                                <div class="flex-fill">
-                                                    @if(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['pdf', 'doc']))
-                                                        <a href="{{ Storage::url($letter->image) }}" target="_blank">Download Dokumen</a>
-                                                    @elseif(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                        <img src="{{ asset('storage/'.$letter->image)}}" alt="Gambar" height="100">
-                                                    @else
-                                                        Tidak ada file yang valid
-                                                    @endif
-                                                </div>
-                                            </div>
-                                        </td>                                         --}}
                                         <td data-label="Name">
                                             <div class="d-flex py-1 align-items-center">
                                                 <div class="flex-fill">
@@ -125,7 +125,35 @@
             </div>
         </div>
     </div>
+        </div>
+    </div>
     @include('letters-keputusan.create')
 @endsection
 
 @include('letters-keputusan.delete')
+
+@push('js')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const searchInput = document.querySelector('input[aria-label="Search invoice"]');
+        const tableRows = document.querySelectorAll('.table tbody tr');
+
+        searchInput.addEventListener('input', function () {
+            const searchTerm = this.value.trim().toLowerCase();
+
+            tableRows.forEach(row => {
+                const title = row.querySelector('td:nth-child(2)').textContent.trim().toLowerCase();
+                const description = row.querySelector('td:nth-child(3)').textContent.trim().toLowerCase();
+
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+</script>
+
+    
+@endpush
