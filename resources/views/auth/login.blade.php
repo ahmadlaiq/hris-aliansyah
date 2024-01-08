@@ -145,6 +145,39 @@
                                     </a>
                                 </span>
                             </div>
+                            <!-- Letakkan ini di bagian bawah halaman atau sebelum tag penutup </body> -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordField = document.querySelector('input[name="password"]');
+        const eyeIcon = document.querySelector('.input-group-text a');
+
+        eyeIcon.addEventListener('click', function (event) {
+            event.preventDefault();
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M15.5 15.5l3.5 3.5" />
+                        <path d="M3 12c3 -3 6.5 -5 9 -5s6 2 9 5" />
+                    </svg>
+                `;
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                        <circle cx="12" cy="12" r="3" />
+                        <path d="M15.5 15.5l3.5 3.5" />
+                        <path d="M3 12c3 -3 6.5 -5 9 -5s6 2 9 5" />
+                    </svg>
+                `;
+            }
+        });
+    });
+</script>
+
                             @error('password')
                                 <div class="alert alert-danger mt-2">
                                     {{ $message }}
