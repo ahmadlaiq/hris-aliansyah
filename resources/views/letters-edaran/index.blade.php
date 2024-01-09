@@ -70,6 +70,7 @@
                             <thead>
                                 <tr class="text-bold">
                                     <th>No</th>
+                                    <th>Tanggal</th>
                                     <th>Judul Surat</th>
                                     <th>Deskripsi</th>
                                     <th class="w-1">Action</th>
@@ -79,6 +80,13 @@
                                 @foreach ($letters as $letter)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td data-label="Tanggal">
+                                            <div class="d-flex py-1 align-items-center">
+                                                <div class="flex-fill">
+                                                    <div class="font-weight-medium">{{ $letter->created_at->format('d-m-Y') }}</div>
+                                                </div>
+                                            </div>
+                                        </td>  
                                         <td data-label="Name">
                                             <div class="d-flex py-1 align-items-center">
                                                 <div class="flex-fill">

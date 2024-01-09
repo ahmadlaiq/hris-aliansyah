@@ -70,6 +70,7 @@
                             <thead>
                                 <tr class="text-bold">
                                     <th>No</th>
+                                    <th>Tanggal</th>
                                     <th>Judul Surat</th>
                                     <th>Deskripsi</th>
                                     <th class="w-1">Action</th>
@@ -79,19 +80,13 @@
                                 @foreach ($letters as $letter)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        {{-- <td data-label="Name">
+                                        <td data-label="Tanggal">
                                             <div class="d-flex py-1 align-items-center">
                                                 <div class="flex-fill">
-                                                    @if(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['pdf', 'doc']))
-                                                        <a href="{{ Storage::url($letter->image) }}" target="_blank">Download Dokumen</a>
-                                                    @elseif(in_array(pathinfo($letter->image, PATHINFO_EXTENSION), ['jpg', 'jpeg', 'png']))
-                                                        <img src="{{ asset('storage/'.$letter->image)}}" alt="Gambar" height="100">
-                                                    @else
-                                                        Tidak ada file yang valid
-                                                    @endif
+                                                    <div class="font-weight-medium">{{ $letter->created_at->format('d-m-Y') }}</div>
                                                 </div>
                                             </div>
-                                        </td>                                         --}}
+                                        </td>
                                         <td data-label="Name">
                                             <div class="d-flex py-1 align-items-center">
                                                 <div class="flex-fill">
